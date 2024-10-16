@@ -19,13 +19,9 @@
 
 ## Installation
 ```bash
-pip install ilua
-
+pipx install ilua
 # From source
-git clone https://github.com/guysv/ilua.git --recurse-submodules
-cd ilua
-pip install -e . --user
-python setup.py install_data -d ~/.local # pip install -e . forgets data_files...
+pipx install git+https://github.com/taconi/ilua
 ```
 
 ## A Bit on ILua's Architecture

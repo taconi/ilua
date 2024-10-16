@@ -1,7 +1,44 @@
-[build-system]
-requires = ["setuptools>=44", "wheel", "setuptools_scm[toml]>=3.4.3"]
-build-backend = "setuptools.build_meta"
+[project]
+name = "ilua"
+version = "0.2.2"
+authors = [{ name = "Guy Sviry", email = "sviryguy@gmail.com" }]
+license = { text = "GPLv2" }
+readme = "README.md"
+description = "Portable Lua kernel for Jupyter"
+keywords = ["lua", "interactive", "console", "jupyter", "kernel"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "Topic :: Software Development :: Interpreters",
+  "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+]
+requires-python = ">=3.8,<4.0"
+dependencies = [
+  "twisted>=23.10.0",
+  "termcolor>=2.1.0",
+  "Pygments>=2.16.1",
+  "txZMQ>=1.0.0",
+  "jupyter_core>=5.5.0",
+  "jupyter_console>=6.6.3",
+  "pywin32>=306; sys_platform=='in321'",
+]
+[project.scripts]
+ilua = "ilua.consoleapp:main"
 
-[tool.setuptools_scm]
-write_to = "ilua/version.py"
-write_to_template = "__version__ = \"{version}\"\n"
+[project.urls]
+Source = "https://github.com/guysv/ilua"
+
+[tool.poetry]
+packages = [{ include = "ilua" }]
+
+[build-system]
+requires = ["poetry-core @ git+https://github.com/python-poetry/poetry-core"]
+build-backend = "poetry.core.masonry.api"

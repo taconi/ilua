@@ -1,3 +1,6 @@
+## [0.2.2] - 2024-10-15
+- Added: Add support for Python >=3.8.
+- Removed: Drop support for EOL Python 3.7, 3.6, 3.5, 3.4 and 2.7.
 ## [0.2.1] - 2019-01-13
 - Tweak: Optimized imports across entire project
 - Bugfix: Removed an unused import that caused jupyter to crash python on windows

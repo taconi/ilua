@@ -14,8 +14,8 @@ stuff
 import json
 import os
 import re
-
-from distutils.spawn import find_executable
+from importlib import metadata
+from shutil import which
 
 if os.name == 'nt':
     # pylint: disable=E0401
@@ -30,7 +30,6 @@ from .kernelbase import KernelBase
 from .namedpipe import CoupleOPipes, get_pipe_path
 from .proto import InterpreterProtocol, OutputCapture
 from .inspector import Inspector
-from .version import __version__ as ilua_version
 
 INTERPRETER_SCRIPT = os.path.join(os.path.dirname(__file__), "interp.lua")
 LUA_PATH_EXTRA = os.path.join(os.path.dirname(__file__), "?.lua")
@@ -42,6 +41,7 @@ class ILuaKernel(KernelBase):
     Jupyter kernel for Lua, managing the communication
     between a Lua subprocess and a Jupyter frontend
     """
+    ilua_version = metadata.version('ilua')
 
     implementation = 'ILua'
     implementation_version = ilua_version
@@ -81,7 +81,7 @@ class ILuaKernel(KernelBase):
             'LUA_PATH': os.environ.get("LUA_PATH", ";") + ";"  + LUA_PATH_EXTRA
         })
 
-        assert find_executable(self.lua_interpreter), ("Could not find '{}', "
+        assert which(self.lua_interpreter), ("Could not find '{}', "
                                                        "is Lua in the system "
                                                        "path?".format(
                                                            self.lua_interpreter))
